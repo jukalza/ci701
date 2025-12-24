@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ci701.hellojavafx.CreatorViewController">
+
+    <!-- Top Bar -->
+    <top>
+        <HBox styleClass="header" spacing="20" alignment="CENTER_LEFT">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <Text text="IT Ticketing System - My Tickets" styleClass="header-title"/>
+
+            <Region HBox.hgrow="ALWAYS"/>
+
+            <Label fx:id="userLabel" styleClass="user-label"/>
+            <Button text="Logout" onAction="#handleLogout" styleClass="logout-button"/>
+        </HBox>
+    </top>
+
+    <!-- Center - Ticket List -->
+    <center>
+        <VBox spacing="15">
+            <padding>
+                <Insets top="20" right="30" bottom="20" left="30"/>
+            </padding>
+
+            <!-- Action Bar -->
+            <HBox spacing="15" alignment="CENTER_LEFT">
+                <Button text="Create New Ticket" onAction="#handleCreateTicket"
+                        styleClass="create-button"/>
+
+                <Region HBox.hgrow="ALWAYS"/>
+
+                <Label text="Filter by Status:" styleClass="filter-label"/>
+                <ComboBox fx:id="statusFilterComboBox" promptText="All Statuses"
+                          onAction="#handleFilterChange" styleClass="filter-combo"/>
+
+                <Button text="Refresh" onAction="#handleRefresh" styleClass="action-button"/>
+            </HBox>
+
+            <Separator/>
+
+            <!-- Tickets Table -->
+            <TableView fx:id="ticketsTable" VBox.vgrow="ALWAYS">
+                <columns>
+                    <TableColumn fx:id="idColumn" text="Ticket ID" prefWidth="100"/>
+                    <TableColumn fx:id="priorityColumn" text="Priority" prefWidth="150"/>
+                    <TableColumn fx:id="titleColumn" text="Title" prefWidth="300"/>
+                    <TableColumn fx:id="ownerColumn" text="Assigned To" prefWidth="120"/>
+                    <TableColumn fx:id="statusColumn" text="Status" prefWidth="120"/>
+                    <TableColumn fx:id="createdColumn" text="Created" prefWidth="130"/>
+                    <TableColumn fx:id="updatedColumn" text="Last Updated" prefWidth="130"/>
+                </columns>
+            </TableView>
+
+            <!-- Action Buttons -->
+            <HBox spacing="10" alignment="CENTER_RIGHT">
+                <Button text="View Details" onAction="#handleViewDetails" styleClass="action-button"/>
+                <Button text="Edit Ticket" onAction="#handleEditTicket" styleClass="action-button"/>
+                <Button text="Delete Ticket" onAction="#handleDeleteTicket" styleClass="delete-button"/>
+            </HBox>
+        </VBox>
+    </center>
+
+</BorderPane>
